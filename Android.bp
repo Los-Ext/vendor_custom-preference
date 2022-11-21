@@ -14,9 +14,9 @@ android_library {
         "androidx.appcompat_appcompat",
         "androidx.recyclerview_recyclerview",
         "org.lineageos.platform.internal",
+        "LineagePreferenceLib",
     ],
 
     resource_dirs: ["res"],
 
 }
-

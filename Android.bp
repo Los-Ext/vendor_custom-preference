@@ -15,6 +15,7 @@ android_library {
         "androidx.recyclerview_recyclerview",
         "org.lineageos.platform.internal",
         "LineagePreferenceLib",
+        "SettingsLib",
     ],
 
     resource_dirs: ["res"],

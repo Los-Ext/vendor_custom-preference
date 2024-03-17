@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2016-2020 crDroid Android Project
- * Copyright (C) 2022-2023 Altair ROM Project
+ * Copyright (C) 2016-2023 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.lineage.support.preferences;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
+import androidx.core.content.res.TypedArrayUtils;
+import androidx.preference.*;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -29,9 +29,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.core.content.res.TypedArrayUtils;
-import androidx.preference.*;
 
 import com.android.settingslib.Utils;
 import com.lineage.support.R;
@@ -113,8 +110,8 @@ public class CustomSeekBarPreference extends Preference implements SeekBar.OnSee
 
     public CustomSeekBarPreference(Context context, AttributeSet attrs) {
         this(context, attrs, TypedArrayUtils.getAttr(context,
-                androidx.preference.R.attr.seekBarPreferenceStyle,
-                com.android.internal.R.attr.seekBarPreferenceStyle));
+                        androidx.preference.R.attr.seekBarPreferenceStyle,
+                        com.android.internal.R.attr.seekBarPreferenceStyle));
     }
 
     public CustomSeekBarPreference(Context context) {

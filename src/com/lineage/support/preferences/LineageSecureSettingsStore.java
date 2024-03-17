@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2016-2019 crDroid Android Project
- * Copyright (C) 2022 Altair ROM Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.lineage.support.preferences;
 
 import android.content.ContentResolver;
-import android.os.UserHandle;
 import android.preference.PreferenceDataStore;
+import android.os.UserHandle;
 
 import lineageos.providers.LineageSettings;
+
 
 public class LineageSecureSettingsStore extends androidx.preference.PreferenceDataStore
         implements PreferenceDataStore {

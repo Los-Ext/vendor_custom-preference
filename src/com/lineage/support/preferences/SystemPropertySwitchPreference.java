@@ -1,7 +1,5 @@
 /*
- * Copyright (C) 2014 The CyanogenMod Project
- * Copyright (C) 2017 AICP
- * Copyright (C) 2022 Project Kaleidoscope
+ * Copyright (C) 2022 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,34 +17,40 @@
 package com.lineage.support.preferences;
 
 import android.content.Context;
-import androidx.preference.SwitchPreference;
+import android.os.SystemProperties;
 import android.util.AttributeSet;
 
-public class SystemPropertySwitchPreference extends SwitchPreference {
+import com.android.settingslib.development.SystemPropPoker;
+
+import lineageos.preference.SelfRemovingSwitchPreference;
+
+public class SystemPropertySwitchPreference extends SelfRemovingSwitchPreference {
 
     public SystemPropertySwitchPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setPreferenceDataStore(new SystemPropertiesStore());
     }
 
     public SystemPropertySwitchPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setPreferenceDataStore(new SystemPropertiesStore());
     }
 
     public SystemPropertySwitchPreference(Context context) {
         super(context);
-        setPreferenceDataStore(new SystemPropertiesStore());
     }
 
     @Override
-    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        // This is what default TwoStatePreference implementation is doing without respecting
-        // real default value:
-        //setChecked(restoreValue ? getPersistedBoolean(mChecked)
-        //        : (Boolean) defaultValue);
-        // Instead, we better do
-        setChecked(restoreValue ? getPersistedBoolean((Boolean) defaultValue)
-                : (Boolean) defaultValue);
+    protected boolean isPersisted() {
+        return !SystemProperties.get(getKey(), "").isEmpty();
+    }
+
+    @Override
+    protected void putBoolean(String key, boolean value) {
+        SystemProperties.set(key, Boolean.toString(value));
+        SystemPropPoker.getInstance().poke();
+    }
+
+    @Override
+    protected boolean getBoolean(String key, boolean defaultValue) {
+        return SystemProperties.getBoolean(key, defaultValue);
     }
 }

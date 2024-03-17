@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 AICP
+ * Copyright (C) 2016-2018 crDroid Android Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,17 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.lineage.support.preferences;
 
 import android.content.Context;
+import androidx.preference.ListPreference;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.provider.Settings;
 
-import androidx.preference.ListPreference;
-
 public class SystemSettingListPreference extends ListPreference {
+
     private boolean mAutoSummary = false;
 
     public SystemSettingListPreference(Context context, AttributeSet attrs, int defStyle) {
@@ -66,5 +65,9 @@ public class SystemSettingListPreference extends ListPreference {
         //setValue(restoreValue ? getPersistedString(mValue) : (String) defaultValue);
         // Instead, we better do
         setValue(restoreValue ? getPersistedString((String) defaultValue) : (String) defaultValue);
+    }
+
+    public int getIntValue(int defValue) {
+        return getValue() == null ? defValue : Integer.valueOf(getValue());
     }
 }

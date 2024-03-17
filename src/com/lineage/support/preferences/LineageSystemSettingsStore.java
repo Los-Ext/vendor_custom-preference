@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.lineage.support.preferences;
 
 import android.content.ContentResolver;
-import android.os.UserHandle;
 import android.preference.PreferenceDataStore;
+import android.os.UserHandle;
 
 import lineageos.providers.LineageSettings;
+
 
 public class LineageSystemSettingsStore extends androidx.preference.PreferenceDataStore
         implements PreferenceDataStore {
